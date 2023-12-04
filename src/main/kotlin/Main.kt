@@ -17,6 +17,7 @@ import drawing.Painter
 import drawing.SelectionRect
 import drawing.convertation.Converter
 import drawing.convertation.Plane
+import math.fractals.Julia
 import math.fractals.Mandelbrot
 import kotlin.math.*
 
@@ -33,6 +34,9 @@ fun App() {
         }
     }}
     fp.plane = Plane(-2.0, 1.0, -1.0, 1.0, 0f, 0f)
+
+
+
     MaterialTheme {
         DrawingPanel(fp){size ->
             fp.width = size.width.toInt()
