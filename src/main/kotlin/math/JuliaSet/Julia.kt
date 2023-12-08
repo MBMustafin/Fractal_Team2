@@ -9,8 +9,8 @@ class Julia : AlgebraicFractal {
     }
 
     override var maxIterations: Int = 2000
-        private var r = 2.0
-        val r2 = r * r
+    private var r = 2.0
+    val r2 = r * r
     override fun isInSet(c : Complex) : Float {
         var z: Complex  = c
         for(i in 0..maxIterations){
