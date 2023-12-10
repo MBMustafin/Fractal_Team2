@@ -1,4 +1,4 @@
-package gui
+package guiforfractal
 
 
 import Photo.TakePhoto
@@ -21,15 +21,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Window
 import drawing.FractalPainter
 import drawing.SelectionRect
 import drawing.colors.colors
 import drawing.convertation.Converter
-import gui.filesaving.fileDialogWindow
+import drawing.convertation.Plane
+import drawing.dynamicalIterations.DynamicalIterations
+import drawing.dynamicalIterations.turnDynamicIterations
+import guiforfractal.filesaving.fileDialogWindow
 
 
-import math.Complex
 import math.fractals.funcs
 
 
@@ -43,10 +44,14 @@ fun menu(fp: MutableState<FractalPainter>){
     var expandedMenu by remember { mutableStateOf(false) }
     var expandedMenuColor by remember { mutableStateOf(false) }
     var expandedFractalFunctions by remember { mutableStateOf(false) }
+
     val checkedState = remember { mutableStateOf(true) }
+    val dynamicItPlane = remember { mutableStateOf( Plane(-2.0, 1.0, -1.0, 1.0, 0f, 0f) ) }
+    val dynIt = remember { mutableStateOf(5000) }
 
     val juliaButtonState = remember { mutableStateOf(false) }
     val juliaFrame = remember { mutableStateOf(false)}
+
     Scaffold(
         topBar = {
             TopAppBar(modifier = Modifier.fillMaxWidth().background(Color.Blue)) {
@@ -88,7 +93,6 @@ fun menu(fp: MutableState<FractalPainter>){
                         }
                     }
                 }
-
                 Box {
                     Button(onClick = {expandedFractalFunctions = true}){
                         Text("Функции")
@@ -149,11 +153,12 @@ fun menu(fp: MutableState<FractalPainter>){
 
                 Spacer(Modifier.weight(0.5f, true))
 
+                Text("${dynIt.value}")
+
                 var i = 0                                                                             //i убрать. Сделал так, чтобы ошибка не вылетала
                 IconButton(onClick = {println(fractalColor.value)}){
                     Icon(Icons.Filled.ArrowBack, contentDescription = "Вернуться на шаг назад")
                 }
-
                 Box {
                     IconButton(onClick = {expandedMenu = true}){
                         Icon(Icons.Filled.MoreVert, contentDescription = "Сохранение")
@@ -197,46 +202,39 @@ fun menu(fp: MutableState<FractalPainter>){
             fp.value.refresh = true
         }
         SelectionPanel(pointCoordinates, juliaButtonState){
+
+
+            println("Dynamic${ dynamicItPlane.value }")
+
             fp.value.plane?.let{ plane ->
                 val xMin = Converter.xScr2Crt(it.topLeft.x, plane)
                 val xMax = Converter.xScr2Crt(it.topLeft.x+it.size.width, plane)
                 val yMax = Converter.yScr2Crt(it.topLeft.y, plane)
                 val yMin = Converter.yScr2Crt(it.topLeft.y+it.size.height, plane)
 
+                turnDynamicIterations(checkedState, fp, dynamicItPlane)
+
+                println("Fp.plane${ fp.value.plane }")
 
                 plane.xMin = xMin
                 plane.xMax = xMax
                 plane.yMin = yMin
                 plane.yMax = yMax
 
+
                 fp.value.xMin = xMin
                 fp.value.xMax = xMax
                 fp.value.yMin = yMin
                 fp.value.yMax = yMax
                 fp.value.refresh = true
+
+
+
+                dynIt.value = fp.value.fractal.maxIterations
             }
 
         }
-        JuliaFrameOpener(juliaFrame, pointCoordinates, fp, fractalColor)
-    }
-}
-
-@Composable
-fun JuliaFrameOpener(juliaFrame: MutableState<Boolean>, pointCoordinates: MutableState<Offset?>,
-                     fp: MutableState<FractalPainter>, fractalColor: MutableState<String>)
-{
-    if (juliaFrame.value){
-        Window(
-            visible = true,
-            onCloseRequest = {juliaFrame.value = false},
-            title = "Множество Жюлиа по точке (${pointCoordinates.value?.let { Converter.xScr2Crt(it.x, fp.value.plane!!) }}, " +
-                    "${pointCoordinates.value?.let { Converter.yScr2Crt(it.y, fp.value.plane!!) }})"
-        ){
-            pointCoordinates.value?.let {
-                val pair = Complex(Converter.xScr2Crt(it.x, fp.value.plane!!), Converter.yScr2Crt(it.y, fp.value.plane!!))
-                julia(pair, fractalColor.value)
-            }
-        }
+        juliaFrameOpener(juliaFrame, pointCoordinates, fp, fractalColor)
     }
 }
 
@@ -249,7 +247,6 @@ fun SelectionPanel(
     onSelected: (SelectionRect)->Unit
 ) {
     var rect by remember {mutableStateOf(SelectionRect(Offset.Zero))}
-
     Canvas(Modifier.fillMaxSize().padding(8.dp)
         .pointerInput(Unit){
             detectDragGestures(
@@ -291,8 +288,8 @@ fun DrawingPanel(
 
         if(fp.value.width != size.width.toInt() || fp.value.height != size.height.toInt() ) {
             onResize(size)
-            fp.value.scoping()
         }
+        fp.value.scoping()
         fp.value.paint(this)
     }
 }

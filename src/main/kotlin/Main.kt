@@ -1,15 +1,13 @@
-import gui.menu
+import guiforfractal.menu
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import drawing.FractalPainter
-import drawing.SelectionRect
 import drawing.colors.colors
 import drawing.convertation.Plane
 import math.fractals.Fractal
-import math.fractals.funcs
 import java.awt.Dimension
 
 

@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="156e1906-a271-4d82-9a2e-9e6ebbc1d4d4" name="Changes" comment="Создано сохранение картинки. К Жюлиа пока не относится">
+    <list default="true" id="156e1906-a271-4d82-9a2e-9e6ebbc1d4d4" name="Changes" comment="Пофиксил ошибки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/FileSaving/FileDialogWindow.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/gui/filesaving/FileDialogWindow.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/Julia.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/gui/Julia.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/menu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/gui/menu.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/Julia.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/guiforfractal/Julia.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/filesaving/FileDialogWindow.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/guiforfractal/filesaving/FileDialogWindow.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/gui/menu.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/guiforfractal/menu.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +50,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="Kotlin Script" />
         <option value="Kotlin Object" />
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Script" />
       </list>
     </option>
   </component>
@@ -110,7 +111,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.48081535&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -392,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702217142337</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Пофиксил ошибки">
+      <option name="closed" value="true" />
+      <created>1702226641294</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1702226641294</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -407,7 +416,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Фрактал раскрашеный" />
     <MESSAGE value="Выделение мышкой" />
     <MESSAGE value="Кешированная картинка" />
     <MESSAGE value="Создана ветка для решения задачи А" />
@@ -432,7 +440,8 @@
     <MESSAGE value="Остается написать код для сохранения фотографии в папку." />
     <MESSAGE value="Работает, за исключением того, что создается в папке проекта фотка и нет обработки исключительных ситуаций при сохранении фотографии. И еще Julia и еще одна функция не запускаются нормаьлно" />
     <MESSAGE value="Создано сохранение картинки. К Жюлиа пока не относится" />
-    <option name="LAST_COMMIT_MESSAGE" value="Создано сохранение картинки. К Жюлиа пока не относится" />
+    <MESSAGE value="Пофиксил ошибки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пофиксил ошибки" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,4 +1,4 @@
-package gui
+package guiforfractal
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi

@@ -1,4 +1,4 @@
-package gui.filesaving
+package guiforfractal.filesaving
 
 
 import java.awt.image.BufferedImage
